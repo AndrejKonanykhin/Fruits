@@ -124,10 +124,32 @@ const filterFruits = () => {
   });
 };
 
+enterMinWeight.addEventListener("keyup", function () {
+  // вводим только цифры в поле min weight
+  this.value = this.value.replace(/[^\d]/g, "");
+});
+
+enterMaxWeight.addEventListener("keyup", function () {
+  // вводим только цифры в поле max weight
+  this.value = this.value.replace(/[^\d]/g, "");
+});
+
 filterButton.addEventListener("click", () => {
-  minWeight = parseInt(enterMinWeight.value) || 0;
-  maxWeight = parseInt(enterMaxWeight.value) || 100;
-  fruits = filterFruits();
+  minWeight = parseInt(enterMinWeight.value);
+  maxWeight = parseInt(enterMaxWeight.value);
+
+  if (maxWeight > minWeight) {
+    fruits = filterFruits();
+    enterMaxWeight.style.outline = "none";
+    enterMinWeight.style.outline = "none";
+  } else {
+    alert("Max weight не может быть меньше min weight!");
+    enterMinWeight.value = "";
+    enterMaxWeight.value = "";
+    enterMaxWeight.style.outline = "3px solid red";
+    enterMinWeight.style.outline = "3px solid red";
+  }
+
   display();
 });
 
@@ -251,15 +273,25 @@ sortActionButton.addEventListener("click", () => {
 
 /*** ДОБАВИТЬ ФРУКТ ***/
 
+kindInput.addEventListener("keyup", function () {
+  // фрукт пишется с большой буквы
+  this.value =
+    this.value.charAt(0).toUpperCase() + this.value.slice(1).toLowerCase();
+});
+
+weightInput.addEventListener("keyup", function () {
+  // вводим только цифры в поле weight
+  this.value = this.value.replace(/[^\d]/g, "");
+});
+
 function fruitAddition() {
-  const newFruit = {};
-  kindInput.value =
-    kindInput.value.charAt(0).toUpperCase() +
-    kindInput.value.slice(1).toLowerCase();
+  const newFruit = {}; // создаем новый объект-фрукт
+
   newFruit.kind = kindInput.value;
   newFruit.color = colorInput.value;
-  newFruit.weight = Number(weightInput.value);
+  newFruit.weight = weightInput.value;
 
+  // проверка заполнения полей
   if (fruits.some((fruit) => fruit.kind === newFruit.kind)) {
     alert(`Фрукт ${newFruit.kind} уже добавлен! Добавьте другой.`);
     kindInput.value = "";
@@ -280,10 +312,11 @@ function fruitAddition() {
     colorInput.style.outline = "none";
     alert("Заполните поле 'weight'!");
   } else {
+    kindInput.style.outline = "none";
     weightInput.style.outline = "none";
     colorInput.style.outline = "none";
 
-    fruits.push(newFruit);
+    fruits.push(newFruit); // пушим новый обект-фрукт в массив фруктов
     origFruits.push(newFruit);
   }
 }
