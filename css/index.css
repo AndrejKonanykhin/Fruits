@@ -5,7 +5,7 @@
 body {
   margin: 0;
   font-size: 14px;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
 }
 
 ul[class] {
@@ -24,16 +24,17 @@ button {
   border: none;
   color: white;
   font-size: 14px;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   padding: 10px 16px;
   border-radius: 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   max-width: fit-content;
+  cursor: pointer;
 }
 
-input {
+input, select {
   margin: 5px 10px 5px 0;
   border: 0;
   padding: 0 10px;
@@ -45,6 +46,10 @@ input {
   background-color: #3cbc8d;
   color: white;
   max-width: 200px;
+}
+
+select {
+  height: 36px;
 }
 
 main {
@@ -112,7 +117,7 @@ main {
 }
 
 .fruit_green {
-  background: #84cd1b;
+  background: #63c742;
 }
 
 .fruit_carmazin {
