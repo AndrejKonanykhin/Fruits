@@ -138,7 +138,7 @@ filterButton.addEventListener("click", () => {
   minWeight = parseInt(enterMinWeight.value);
   maxWeight = parseInt(enterMaxWeight.value);
 
-  if (maxWeight > minWeight) {
+  if (maxWeight >= minWeight) {
     fruits = filterFruits();
     enterMaxWeight.style.outline = "none";
     enterMinWeight.style.outline = "none";
